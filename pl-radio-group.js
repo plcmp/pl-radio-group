@@ -7,6 +7,7 @@ class PlRadioGroup extends PlElement {
 		return {
 			label: { type: String },
 			variant: { type: String },
+			vertical: { type: Boolean, reflectToAttribute: true  },
 			required: { type: Boolean, value: false, observer: '_requiredObserver' },
 			disabled: { type: Boolean, reflectToAttribute: true },
 			selected: { type: String, observer: '_selectedObserver' },
@@ -23,15 +24,21 @@ class PlRadioGroup extends PlElement {
 				user-select: none;
 			}
 
+			:host([vertical]) .radio-container {
+				flex-direction: column;
+			}
+
 			.radio-container {
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
 				border: 1px solid var(--grey-light);
-				width: var(--content-width, 200px);
+				background: var(--surface-color);
 				box-sizing: border-box;
-				padding: 0px 8px;
-				border-radius: 4px;
+				padding: 0px var(--space-sm);
+				border-radius: var(--border-radius);
 				position: relative;	
+				gap: var(--space-sm);
+				min-width: var(--content-width, 200px);
 			}
 
 			.radio-container::before {
@@ -44,10 +51,10 @@ class PlRadioGroup extends PlElement {
 			}
 
 			.radio-container.required::before {
-				border-top: 8px solid var(--attention-light);
-				border-left: 8px  solid var(--attention-light);
-				border-bottom: 8px solid transparent;
-				border-right: 8px solid transparent;
+				border-top: calc(var(--space-md) / 2) solid var(--attention);
+				border-left: calc(var(--space-md) / 2)  solid var(--attention);
+				border-bottom: calc(var(--space-md) / 2) solid transparent;
+				border-right: calc(var(--space-md) / 2) solid transparent;
 			}
 		`;
 	}
