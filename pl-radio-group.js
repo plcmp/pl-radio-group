@@ -32,7 +32,7 @@ class PlRadioGroup extends PlElement {
 				display: flex;
 				flex-direction: row;
 				border: 1px solid var(--grey-light);
-				background: var(--surface-color);
+				background: var(--background-color);
 				box-sizing: border-box;
 				padding: 0px var(--space-sm);
 				border-radius: var(--border-radius);
