@@ -46,15 +46,15 @@ class PlRadioGroup extends PlElement {
 				display: block;
 				position: absolute;
 				box-sizing: border-box;
-				top: 0;
-				left: 0;
+                inset-block-start: 0;
+                inset-inline-start: 0;
 			}
 
 			.radio-container.required::before {
-				border-top: calc(var(--space-md) / 2) solid var(--attention);
-				border-left: calc(var(--space-md) / 2)  solid var(--attention);
-				border-bottom: calc(var(--space-md) / 2) solid transparent;
-				border-right: calc(var(--space-md) / 2) solid transparent;
+				border-block-start: calc(var(--space-md) / 2) solid var(--attention);
+				border-inline-start: calc(var(--space-md) / 2)  solid var(--attention);
+				border-inline-end: calc(var(--space-md) / 2) solid transparent;
+				border-block-end: calc(var(--space-md) / 2) solid transparent;
 			}
 		`;
 	}
