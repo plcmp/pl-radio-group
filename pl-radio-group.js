@@ -24,21 +24,30 @@ class PlRadioGroup extends PlElement {
 				user-select: none;
 			}
 
+
 			:host([vertical]) .radio-container {
 				flex-direction: column;
+			}
+
+			.radio-container ::slotted(pl-radio-button:first-child) {
+				border-radius: 4px 0 0 4px;
+				border-left: none;
+			}
+
+			.radio-container ::slotted(pl-radio-button:last-child) {
+				border-radius: 0 4px 4px 0;
+				border-right: none;
 			}
 
 			.radio-container {
 				display: flex;
 				flex-direction: row;
-				border: 1px solid var(--grey-light);
+                border: 1px solid var(--grey-base);
 				background: var(--background-color);
 				box-sizing: border-box;
-				padding: 0px var(--space-sm);
 				border-radius: var(--border-radius);
 				position: relative;	
-				gap: var(--space-sm);
-				min-width: var(--content-width, 200px);
+				overflow: hidden;
 			}
 
 			.radio-container::before {
