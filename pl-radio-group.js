@@ -7,7 +7,7 @@ class PlRadioGroup extends PlElement {
 		return {
 			label: { type: String },
 			variant: { type: String },
-			vertical: { type: Boolean, reflectToAttribute: true  },
+			vertical: { type: Boolean, reflectToAttribute: true },
 			required: { type: Boolean, value: false, observer: '_requiredObserver' },
 			disabled: { type: Boolean, reflectToAttribute: true },
 			selected: { type: String, observer: '_selectedObserver' },
@@ -31,23 +31,39 @@ class PlRadioGroup extends PlElement {
 
 			.radio-container ::slotted(pl-radio-button:first-child) {
 				border-radius: 4px 0 0 4px;
-				border-left: none;
+				border-left: 1px solid var(--grey-base);
 			}
 
 			.radio-container ::slotted(pl-radio-button:last-child) {
 				border-radius: 0 4px 4px 0;
-				border-right: none;
+				border-right: 1px solid var(--grey-base);
 			}
 
 			.radio-container {
 				display: flex;
 				flex-direction: row;
-                border: 1px solid var(--grey-base);
 				background: var(--background-color);
-				box-sizing: border-box;
-				border-radius: var(--border-radius);
+				border: 1px solid transparent;
 				position: relative;	
 				overflow: hidden;
+			}
+
+			.radio-container.required {
+                border: 1px solid var(--grey-base);
+				border-radius: var(--border-radius);
+			}
+
+			.radio-container.required ::slotted(pl-radio-button) {
+                border-top: 1px solid transparent;
+				border-bottom: 1px solid transparent;
+			}
+
+			.radio-container.required ::slotted(pl-radio-button:first-child) {
+                border-left: 1px solid transparent;
+			}
+
+			.radio-container.required ::slotted(pl-radio-button:last-child) {
+                border-right: 1px solid transparent;
 			}
 
 			.radio-container::before {
@@ -83,7 +99,7 @@ class PlRadioGroup extends PlElement {
 	connectedCallback() {
 		super.connectedCallback();
 		this._radioButtons = this.root.querySelector('.radio-container slot').assignedElements();
-        this._radioContainer = this.root.querySelector('.radio-container');
+		this._radioContainer = this.root.querySelector('.radio-container');
 
 		this.addEventListener('radio-selected', (ev) => {
 			this.selected = ev.detail.name;
