@@ -12,10 +12,14 @@ class PlRadioGroup extends PlElement {
 		disabled: { type: Boolean, reflectToAttribute: true },
 		selected: { type: String, observer: '_selectedObserver' },
 		invalid: { type: Boolean, value: false },
-		readonly: { type: Boolean, reflectToAttribute: true }
+		readonly: { type: Boolean, reflectToAttribute: true },
+		hidden: { type: Boolean, reflectToAttribute: true }
 	}
 
 	static css = css`
+		:host([hidden]) {
+			display:none;
+		}
 		:host([disabled]) {
 			color: var(--grey-base);
 			cursor: not-allowed;
