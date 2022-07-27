@@ -1,6 +1,6 @@
 {
     "name": "@plcmp/pl-radio-group",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Simple container for radio buttons implementation.",
     "main": "pl-radio-group.js",
     "repository": {
@@ -23,6 +23,7 @@
         }
     ],
     "dependencies": {
-        "polylib": "^1.0.0"
+        "polylib": "^1.1.4",
+        "@plcmp/pl-labeled-container": "^0.1.6"
     }
 }
