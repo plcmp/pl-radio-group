@@ -90,7 +90,7 @@ class PlRadioGroup extends PlElement {
 	`;
 
 	static template = html`
-		<pl-labeled-container label="[[label]]" orientation="[[variant]]">
+		<pl-labeled-container label="[[label]]" orientation="[[orientation]]">
 			<slot name="label-prefix" slot="label-prefix"></slot>
 			<div class="radio-container" id="container">
 				<slot></slot>
@@ -109,7 +109,6 @@ class PlRadioGroup extends PlElement {
 			this.orientation = this.variant;
 		}
 
-
 		this.addEventListener('radio-selected', (ev) => {
 			if (this.readonly) {
 				return;
@@ -124,7 +123,7 @@ class PlRadioGroup extends PlElement {
 	}
 
 	validate() {
-		this.invalid = !this.selected && this.required;
+		this.invalid = this.selected == undefined && this.required;
 		if (this.invalid) {
 			this._radioContainer.classList.add('required');
 		} else {
