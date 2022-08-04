@@ -87,6 +87,12 @@ class PlRadioGroup extends PlElement {
 			border-inline-end: calc(var(--space-md) / 2) solid transparent;
 			border-block-end: calc(var(--space-md) / 2) solid transparent;
 		}
+
+		:host{
+			--content-width: auto;
+			width: fit-content;
+			max-width: 100%;
+		}
 	`;
 
 	static template = html`
