@@ -90,8 +90,7 @@ class PlRadioGroup extends PlElement {
 
 		:host{
 			--content-width: auto;
-			width: fit-content;
-			max-width: 100%;
+			width: auto;
 		}
 	`;
 
