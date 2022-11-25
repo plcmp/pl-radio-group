@@ -5,7 +5,6 @@ import "@plcmp/pl-labeled-container";
 class PlRadioGroup extends PlElement {
 	static properties = {
 		label: { type: String },
-		variant: { type: String },
 		orientation: { type: String },
 		vertical: { type: Boolean, reflectToAttribute: true },
 		required: { type: Boolean, value: false, observer: '_requiredObserver' },
@@ -108,11 +107,6 @@ class PlRadioGroup extends PlElement {
 		super.connectedCallback();
 		this._radioButtons = this.root.querySelector('.radio-container slot').assignedElements();
 		this._radioContainer = this.$.container;
-
-		if (this.variant) {
-			console.log('Variant is deprecated, use orientation instead');
-			this.orientation = this.variant;
-		}
 
 		this.addEventListener('radio-selected', (ev) => {
 			if (this.readonly) {
