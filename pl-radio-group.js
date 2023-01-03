@@ -16,14 +16,28 @@ class PlRadioGroup extends PlElement {
 	}
 
 	static css = css`
+		:host{
+			--content-width: auto;
+			width: auto;
+		}
+
 		:host([hidden]) {
 			display:none;
 		}
+
 		:host([disabled]) {
 			color: var(--grey-base);
 			cursor: not-allowed;
-			pointer-events: none;
 			user-select: none;
+		}
+
+		:host([disabled]) ::slotted(pl-radio[selected]){
+			--pl-radio-border: var(--grey-base);
+			--pl-radio-background: var(--grey-base);
+		}
+
+		:host([disabled]) .radio-container {
+			pointer-events: none;
 		}
 
 		:host([vertical]) .radio-container {
@@ -86,11 +100,6 @@ class PlRadioGroup extends PlElement {
 			border-inline-end: calc(var(--space-md) / 2) solid transparent;
 			border-block-end: calc(var(--space-md) / 2) solid transparent;
 		}
-
-		:host{
-			--content-width: auto;
-			width: auto;
-		}
 	`;
 
 	static template = html`
@@ -106,7 +115,6 @@ class PlRadioGroup extends PlElement {
 	connectedCallback() {
 		super.connectedCallback();
 		this._radioButtons = this.root.querySelector('.radio-container slot').assignedElements();
-		this._radioContainer = this.$.container;
 
 		this.addEventListener('radio-selected', (ev) => {
 			if (this.readonly) {
@@ -123,10 +131,10 @@ class PlRadioGroup extends PlElement {
 
 	validate() {
 		this.invalid = this.selected == undefined && this.required;
-		if (this.invalid) {
-			this._radioContainer.classList.add('required');
+		if (this.invalid && !this.disabled) {
+			this.$.container.classList.add('required');
 		} else {
-			this._radioContainer.classList.remove('required');
+			this.$.container.classList.remove('required');
 		}
 
 		this.dispatchEvent(new CustomEvent('validation-changed', { bubbles: true, composed: true }))
