@@ -61,7 +61,7 @@ class PlRadioGroup extends PlElement {
 		.radio-container {
 			display: flex;
 			flex-direction: row;
-			background: var(--background-color);
+			background: transparent;
 			border: 1px solid transparent;
 			position: relative;	
 			overflow: hidden;
