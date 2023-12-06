@@ -141,6 +141,7 @@ class PlRadioGroup extends PlElement {
 	}
 
 	_selectedObserver(val) {
+		this._radioButtons = this.root.querySelector('.radio-container slot').assignedElements();
 		this._radioButtons.forEach((el) => {
 			el.selected = false;
 		});
